@@ -1,0 +1,54 @@
+{
+  "name": "zup",
+  "version": "1.0.0",
+  "description": "Projeto para vaga de QA na Zup",
+  "author": "Paulo Gonçalves <paulorochag@hotmail.com> (https://www.linkedin.com/in/paulo-goncalves/)",
+  "license": "MIT",
+  "scripts": {
+    "commit": "git-cz",
+    "test": "npm run test:audit & npm run test:e2e",
+    "test:audit": "lighthouse-ci --score=80 https://www.magazineluiza.com.br/",
+    "pretest:e2e": "webdriver-manager update --gecko false",
+    "test:e2e": "protractor test/protractor.conf.js",
+    "lint": "standard",
+    "lint:fix": "standard --fix"
+  },
+  "dependencies": {
+    "lighthouse-ci": "^1.10.0",
+    "protractor": "5.4.2",
+    "protractor-helper": "3.7.11"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "^3.2.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "pre-commit": "^1.2.2",
+    "standard": "^14.3.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "npm run lint:fix"
+    ]
+  },
+  "standard": {
+    "globals": [
+      "beforeEach",
+      "describe",
+      "it"
+    ]
+  }
+}
