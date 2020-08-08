@@ -1,0 +1,62 @@
+name: Continuous Integration
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  lint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Project checkout
+      uses: actions/checkout@v2
+    - name: Node.js Setup
+      uses: actions/setup-node@v2.1.1
+    - name: Installation of Node.js dependencies
+      run: npm ci
+    - name: Lint
+      run: npm run lint
+
+  commit-lint:
+
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+    - name: Project checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: wagoid/commitlint-github-action@v1
+
+  test-e2e:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Project checkout
+      uses: actions/checkout@v2
+    - name: Node.js Setup
+      uses: actions/setup-node@v2.1.1
+    - name: Installation of Node.js dependencies
+      run: npm ci
+    - name: E2E Test
+      run: npm run test:e2e
+
+  test-audit:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Project checkout
+      uses: actions/checkout@v2
+    - name: Node.js Setup
+      uses: actions/setup-node@v2.1.1
+    - name: Installation of Node.js dependencies
+      run: npm ci
+    - name: Audit test with Lighthouse CI
+      run: npm run test:audit
