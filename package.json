@@ -7,16 +7,18 @@
   "scripts": {
     "commit": "git-cz",
     "test": "npm run test:audit & npm run test:e2e",
-    "test:audit": "lighthouse-ci --score=80 https://www.magazineluiza.com.br/",
-    "pretest:e2e": "webdriver-manager update --gecko false",
-    "test:e2e": "protractor test/protractor.conf.js",
+    "test:audit": "lighthouse-ci --seo=95 --accessibility=80 https://www.amazon.com.br/",
+    "pretest:e2e": "webdriver-manager update --gecko false --standalone false --versions.chrome 79.0.3945.130",
+    "test:e2e": "protractor e2e/protractor.conf.js",
     "lint": "standard",
     "lint:fix": "standard --fix"
   },
   "dependencies": {
+    "jasmine-spec-reporter": "^5.0.2",
     "lighthouse-ci": "^1.10.0",
     "protractor": "5.4.2",
-    "protractor-helper": "3.7.11"
+    "protractor-helper": "3.7.11",
+    "protractor-jasmine2-html-reporter": "0.0.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",
@@ -46,9 +48,15 @@
   },
   "standard": {
     "globals": [
+      "$",
+      "afterEach",
       "beforeEach",
+      "browser",
+      "by",
       "describe",
-      "it"
+      "element",
+      "it",
+      "jasmine"
     ]
   }
 }
