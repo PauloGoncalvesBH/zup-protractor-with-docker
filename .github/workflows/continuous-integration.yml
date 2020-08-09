@@ -33,7 +33,7 @@ jobs:
         fetch-depth: 0
     - uses: wagoid/commitlint-github-action@v1
 
-  test-e2e:
+  test-e2e-chrome-docker:
 
     runs-on: ubuntu-latest
 
@@ -44,8 +44,12 @@ jobs:
       uses: actions/setup-node@v2.1.1
     - name: Installation of Node.js dependencies
       run: npm ci
-    - name: E2E Test
-      run: npm run test:e2e
+    - name: Start container Docker
+      run: |
+        docker-compose up -d
+        docker ps -a
+    - name: E2E Chrome test
+      run: npm run test:e2e:docker
 
   test-audit:
 

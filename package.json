@@ -5,11 +5,13 @@
   "author": "Paulo Gonçalves <paulorochag@hotmail.com> (https://www.linkedin.com/in/paulo-goncalves/)",
   "license": "MIT",
   "scripts": {
-    "commit": "git-cz",
-    "test": "npm run test:audit & npm run test:e2e",
+    "test": "npm run test:audit & npm run test:chrome & npm run test:firefox",
     "test:audit": "lighthouse-ci --seo=95 --accessibility=80 https://www.amazon.com.br/",
-    "pretest:e2e": "webdriver-manager update --gecko false --standalone false --versions.chrome 79.0.3945.130",
-    "test:e2e": "protractor e2e/protractor.conf.js",
+    "pretest:chrome": "webdriver-manager update --gecko false --standalone false --versions.chrome 79.0.3945.130",
+    "test:chrome": "protractor e2e/configs/chromeLocal.conf.js",
+    "pretest:chrome:docker": "webdriver-manager update --gecko false --standalone false",
+    "test:chrome:docker": "protractor e2e/configs/chromeDocker.conf.js",
+    "commit": "git-cz",
     "lint": "standard",
     "lint:fix": "standard --fix"
   },
