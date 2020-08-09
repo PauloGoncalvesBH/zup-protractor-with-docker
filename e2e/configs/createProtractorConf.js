@@ -24,7 +24,7 @@ module.exports = providedConfig => {
             displayFailed: true
           }
         })
-      ),
+      )
       jasmine.getEnv().addReporter(
         new Jasmine2HtmlReporter({
           savePath: 'report/screenshots'

@@ -36,7 +36,6 @@ jobs:
   test-e2e-chrome-docker:
 
     runs-on: ubuntu-latest
-    continue-on-error: true
 
     steps:
     - name: Project checkout
@@ -50,6 +49,7 @@ jobs:
         docker-compose up -d
         docker ps -a
     - name: E2E Chrome test
+      continue-on-error: true
       run: npm run test:e2e:docker
 
   test-audit:
