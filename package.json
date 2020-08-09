@@ -1,7 +1,7 @@
 {
-  "name": "zup",
+  "name": "protractor-with-docker",
   "version": "1.0.0",
-  "description": "Projeto para vaga de QA na Zup",
+  "description": "Projeto de execução do protractor com docker e lighthouse",
   "author": "Paulo Gonçalves <paulorochag@hotmail.com> (https://www.linkedin.com/in/paulo-goncalves/)",
   "license": "MIT",
   "scripts": {

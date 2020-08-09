@@ -36,6 +36,7 @@ jobs:
   test-e2e-chrome-docker:
 
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     steps:
     - name: Project checkout
