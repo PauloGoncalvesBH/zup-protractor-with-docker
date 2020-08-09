@@ -1,5 +1,5 @@
 const SpecReporter = require('jasmine-spec-reporter').SpecReporter
-// const Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter')
+const Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter')
 
 module.exports = providedConfig => {
   const defaultConfig = {
@@ -24,13 +24,12 @@ module.exports = providedConfig => {
             displayFailed: true
           }
         })
+      ),
+      jasmine.getEnv().addReporter(
+        new Jasmine2HtmlReporter({
+          savePath: 'report/screenshots'
+        })
       )
-      // ,
-      // jasmine.getEnv().addReporter(
-      //   new Jasmine2HtmlReporter({
-      //     savePath: 'report/screenshots'
-      //   })
-      // )
     },
     jasmineNodeOpts: {
       random: true,
