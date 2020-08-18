@@ -51,7 +51,7 @@ npm run test:audit
 
 Para executar ambos os testes acima, execute:
 ```sh
-npm run test
+npm test
 ```
 
 #### Docker
